@@ -5,8 +5,8 @@
  */
 package Interface;
 
-import Persistência.conexaomysql;
-import Variaveis.Variaveis;
+import Dao.conexaomysql;
+import Variables.Variaveis;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

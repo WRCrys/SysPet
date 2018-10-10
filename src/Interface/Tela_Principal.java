@@ -5,7 +5,7 @@
  */
 package Interface;
 
-import Variaveis.Variaveis;
+import Variables.Variaveis;
 /**
  *
  * @author Skalybuhr

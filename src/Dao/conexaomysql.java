@@ -1,7 +1,8 @@
-package Persistência;
+package Dao;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
+import Variables.Variaveis;
 
 /**
  *
@@ -13,7 +14,7 @@ public class conexaomysql {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/syspet","root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/"+Variaveis.NOME_DB,Variaveis.USER_DB, Variaveis.PASSWORD_DB);
             System.out.println("Banco de dados conectado com sucesso!");
             return con;
         } catch (SQLException error) {
