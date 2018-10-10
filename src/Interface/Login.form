@@ -87,7 +87,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jl_Usuario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jt_Usuario_Login" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -144,7 +144,7 @@
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagens/icon_ok.png"/>
+              <Image iconType="3" name="/Images/icon_ok.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Conectar"/>
           </Properties>

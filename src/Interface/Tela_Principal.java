@@ -45,10 +45,10 @@ public class Tela_Principal extends javax.swing.JFrame {
         jm_Caixa = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jmi_Venda = new javax.swing.JMenuItem();
         jm_Estoque = new javax.swing.JMenu();
         jmi_Produtos = new javax.swing.JMenuItem();
         jmi_Categ_Prod = new javax.swing.JMenuItem();
+        jmi_Venda = new javax.swing.JMenuItem();
         jMenu_Sair = new javax.swing.JMenu();
         jmi_Sair = new javax.swing.JMenuItem();
 
@@ -71,7 +71,7 @@ public class Tela_Principal extends javax.swing.JFrame {
 
         jMenu_Cliente.setText("Cliente");
 
-        jmi_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_customer_25.png"))); // NOI18N
+        jmi_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_customer_25.png"))); // NOI18N
         jmi_Cliente.setText("Cliente");
         jmi_Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +80,7 @@ public class Tela_Principal extends javax.swing.JFrame {
         });
         jMenu_Cliente.add(jmi_Cliente);
 
-        jmi_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_animal_25.png"))); // NOI18N
+        jmi_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_animal_25.png"))); // NOI18N
         jmi_animal.setText("Animal");
         jMenu_Cliente.add(jmi_animal);
 
@@ -88,15 +88,15 @@ public class Tela_Principal extends javax.swing.JFrame {
 
         jMenu_Gestao.setText("Gestão");
 
-        jmi_Funcionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_employee_25.png"))); // NOI18N
+        jmi_Funcionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_employee_25.png"))); // NOI18N
         jmi_Funcionarios.setText("Funcionários");
         jMenu_Gestao.add(jmi_Funcionarios);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_motobike_25.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_motobike_25.png"))); // NOI18N
         jMenuItem1.setText("Veículos");
         jMenu_Gestao.add(jMenuItem1);
 
-        jmi_Cargos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_carrer_25.png"))); // NOI18N
+        jmi_Cargos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_carrer_25.png"))); // NOI18N
         jmi_Cargos.setText("Cargos");
         jMenu_Gestao.add(jmi_Cargos);
 
@@ -104,7 +104,7 @@ public class Tela_Principal extends javax.swing.JFrame {
 
         jMenu_Movimentos.setText("Movimentos");
 
-        jm_Caixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_cash_register_25.png"))); // NOI18N
+        jm_Caixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_cash_register_25.png"))); // NOI18N
         jm_Caixa.setText("Caixa");
 
         jMenuItem2.setText("Movimentações");
@@ -115,11 +115,7 @@ public class Tela_Principal extends javax.swing.JFrame {
 
         jMenu_Movimentos.add(jm_Caixa);
 
-        jmi_Venda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_sale_25.png"))); // NOI18N
-        jmi_Venda.setText("Venda");
-        jMenu_Movimentos.add(jmi_Venda);
-
-        jm_Estoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_cardboard_box_25.png"))); // NOI18N
+        jm_Estoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_cardboard_box_25.png"))); // NOI18N
         jm_Estoque.setText("Estoque");
 
         jmi_Produtos.setText("Produtos");
@@ -130,11 +126,15 @@ public class Tela_Principal extends javax.swing.JFrame {
 
         jMenu_Movimentos.add(jm_Estoque);
 
+        jmi_Venda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_sale_25.png"))); // NOI18N
+        jmi_Venda.setText("Venda");
+        jMenu_Movimentos.add(jmi_Venda);
+
         jMenuBar1.add(jMenu_Movimentos);
 
         jMenu_Sair.setText("Sair");
 
-        jmi_Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_exit_sign_25.png"))); // NOI18N
+        jmi_Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_exit_sign_25.png"))); // NOI18N
         jmi_Sair.setText("Sair");
         jmi_Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

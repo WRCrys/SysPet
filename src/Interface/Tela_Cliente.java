@@ -57,16 +57,16 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Buscar:");
 
-        jb_Cli_Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_add_25.png"))); // NOI18N
+        jb_Cli_Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_add_25.png"))); // NOI18N
         jb_Cli_Cadastrar.setText("Cadastrar");
 
-        jb_Cli_Atualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_update_25.png"))); // NOI18N
+        jb_Cli_Atualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_update_25.png"))); // NOI18N
         jb_Cli_Atualizar.setText("Atualizar");
 
-        jb_Cli_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_trash_25.png"))); // NOI18N
+        jb_Cli_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_trash_25.png"))); // NOI18N
         jb_Cli_Excluir.setText("Excluir");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons_search_20.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_search_20.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

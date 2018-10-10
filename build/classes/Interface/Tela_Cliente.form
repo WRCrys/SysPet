@@ -125,7 +125,7 @@
     <Component class="javax.swing.JButton" name="jb_Cli_Cadastrar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagens/icons_add_25.png"/>
+          <Image iconType="3" name="/Images/icons_add_25.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
@@ -133,7 +133,7 @@
     <Component class="javax.swing.JButton" name="jb_Cli_Atualizar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagens/icons_update_25.png"/>
+          <Image iconType="3" name="/Images/icons_update_25.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Atualizar"/>
       </Properties>
@@ -141,7 +141,7 @@
     <Component class="javax.swing.JButton" name="jb_Cli_Excluir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagens/icons_trash_25.png"/>
+          <Image iconType="3" name="/Images/icons_trash_25.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
@@ -149,7 +149,7 @@
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagens/icons_search_20.png"/>
+          <Image iconType="3" name="/Images/icons_search_20.png"/>
         </Property>
       </Properties>
     </Component>

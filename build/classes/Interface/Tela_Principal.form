@@ -12,7 +12,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmi_Cliente">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_customer_25.png"/>
+                  <Image iconType="3" name="/Images/icons_customer_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
@@ -23,7 +23,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmi_animal">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_animal_25.png"/>
+                  <Image iconType="3" name="/Images/icons_animal_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Animal"/>
               </Properties>
@@ -38,7 +38,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmi_Funcionarios">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_employee_25.png"/>
+                  <Image iconType="3" name="/Images/icons_employee_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Funcion&#xe1;rios"/>
               </Properties>
@@ -46,7 +46,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_motobike_25.png"/>
+                  <Image iconType="3" name="/Images/icons_motobike_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ve&#xed;culos"/>
               </Properties>
@@ -54,7 +54,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmi_Cargos">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_carrer_25.png"/>
+                  <Image iconType="3" name="/Images/icons_carrer_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cargos"/>
               </Properties>
@@ -69,7 +69,7 @@
             <Menu class="javax.swing.JMenu" name="jm_Caixa">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_cash_register_25.png"/>
+                  <Image iconType="3" name="/Images/icons_cash_register_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Caixa"/>
               </Properties>
@@ -86,18 +86,10 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <MenuItem class="javax.swing.JMenuItem" name="jmi_Venda">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_sale_25.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Venda"/>
-              </Properties>
-            </MenuItem>
             <Menu class="javax.swing.JMenu" name="jm_Estoque">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_cardboard_box_25.png"/>
+                  <Image iconType="3" name="/Images/icons_cardboard_box_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estoque"/>
               </Properties>
@@ -114,6 +106,14 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="jmi_Venda">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Images/icons_sale_25.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Venda"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu_Sair">
@@ -124,7 +124,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmi_Sair">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icons_exit_sign_25.png"/>
+                  <Image iconType="3" name="/Images/icons_exit_sign_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>

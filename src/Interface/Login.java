@@ -78,7 +78,7 @@ public class Login extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SysPet", 0, 0, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SysPet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
         jl_Usuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jl_Usuario.setText("Usuário:");
@@ -96,7 +96,7 @@ public class Login extends javax.swing.JFrame {
         jp_Senha_Login.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jb_conectar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jb_conectar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon_ok.png"))); // NOI18N
+        jb_conectar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon_ok.png"))); // NOI18N
         jb_conectar.setText("Conectar");
         jb_conectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jl_Usuario)
                     .addComponent(jt_Usuario_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
