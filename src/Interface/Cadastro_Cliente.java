@@ -8,9 +8,7 @@ package Interface;
 import Dao.ClienteDAO;
 import Model.Cliente;
 import Variables.Variaveis;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -411,13 +409,14 @@ public class Cadastro_Cliente extends javax.swing.JDialog {
             cliente.setStatus(status);
             cliente.setCadastro(jd_Cli_Data_Cad.getDate());
             
-            //System.out.println(cliente.getNome());
+            System.out.println("Nome: "+cliente.getNome()+" - Classe Cadastro");
+            System.out.println("Nascimento: "+cliente.getNascimento()+" - Classe Cadastro");
         
         try {
             // TODO add your handling code here:
             validation();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Cadastro_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Cadastro_Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jb_Cli_SalvarActionPerformed
@@ -518,7 +517,14 @@ public class Cadastro_Cliente extends javax.swing.JDialog {
             System.out.println("Sending...");
             
             ClienteDAO clienteDAO = new ClienteDAO();
-            clienteDAO.Cadastrar_Cliente();
+            
+            if(clienteDAO.Cadastrar_Cliente(cliente)){                
+                JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
+                clean();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+            }
+            
 
         }
     }
