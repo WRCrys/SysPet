@@ -41,6 +41,7 @@ public class Tela_Principal extends javax.swing.JFrame {
         jmi_Funcionarios = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jmi_Cargos = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu_Movimentos = new javax.swing.JMenu();
         jm_Caixa = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -99,6 +100,9 @@ public class Tela_Principal extends javax.swing.JFrame {
         jmi_Cargos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_carrer_25.png"))); // NOI18N
         jmi_Cargos.setText("Cargos");
         jMenu_Gestao.add(jmi_Cargos);
+
+        jMenuItem4.setText("Fornecedores");
+        jMenu_Gestao.add(jMenuItem4);
 
         jMenuBar1.add(jMenu_Gestao);
 
@@ -218,6 +222,7 @@ public class Tela_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenu jMenu_Cliente;
     private javax.swing.JMenu jMenu_Gestao;
     private javax.swing.JMenu jMenu_Movimentos;

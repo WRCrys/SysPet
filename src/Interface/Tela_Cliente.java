@@ -59,6 +59,11 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
 
         jb_Cli_Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_add_25.png"))); // NOI18N
         jb_Cli_Cadastrar.setText("Cadastrar");
+        jb_Cli_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Cli_CadastrarActionPerformed(evt);
+            }
+        });
 
         jb_Cli_Atualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_update_25.png"))); // NOI18N
         jb_Cli_Atualizar.setText("Atualizar");
@@ -124,6 +129,12 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jb_Cli_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_CadastrarActionPerformed
+        // TODO add your handling code here:
+        Cadastro_Cliente cc = new Cadastro_Cliente(null, true);
+        cc.setVisible(true);
+    }//GEN-LAST:event_jb_Cli_CadastrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
