@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+package View;
 
+import Dao.ClienteDAO;
+import Model.Cliente;
 import Variables.Variaveis;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -18,6 +24,14 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
      */
     public Tela_Cliente() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) jt_Clientes.getModel ();
+        jt_Clientes.setRowSorter(new TableRowSorter(modelo));
+        
+        try {
+            listarjTable();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Tela_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -30,7 +44,7 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jt_Clientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jt_Cli_Buscar = new javax.swing.JTextField();
         jb_Cli_Cadastrar = new javax.swing.JButton();
@@ -42,18 +56,23 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle(Variaveis.TITULO_CLIENTE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jt_Clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cód", "Nome", "Endereço", "Telefone", "Celular"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jt_Clientes);
 
         jLabel1.setText("Buscar:");
 
@@ -79,11 +98,11 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -93,16 +112,13 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
                                 .addGap(53, 53, 53))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton4)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jt_Cli_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 146, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jt_Cli_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,15 +152,31 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
         cc.setVisible(true);
     }//GEN-LAST:event_jb_Cli_CadastrarActionPerformed
 
+    //Methods
+    public void listarjTable() throws ClassNotFoundException{
+        DefaultTableModel model = (DefaultTableModel) jt_Clientes.getModel();
+        model.setNumRows(0);
+        ClienteDAO clienteDAO = new ClienteDAO();
+        
+        for(Cliente c: clienteDAO.Listar_Cliente()){
+            model.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getEndereco(),
+                c.getTelefone(),
+                c.getCelular()
+            });
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_Cli_Atualizar;
     private javax.swing.JButton jb_Cli_Cadastrar;
     private javax.swing.JButton jb_Cli_Excluir;
     private javax.swing.JTextField jt_Cli_Buscar;
+    private javax.swing.JTable jt_Clientes;
     // End of variables declaration//GEN-END:variables
 }
