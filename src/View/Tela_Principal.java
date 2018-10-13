@@ -57,21 +57,23 @@ public class Tela_Principal extends javax.swing.JFrame {
         setTitle(Variaveis.NOME_SISTEMA+" - Usuário: "+Variaveis.USUARIO_SISTEMA);
         setName(""); // NOI18N
 
-        jDesktopPane.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        jDesktopPane.setBackground(new java.awt.Color(240, 240, 240));
 
         javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 937, Short.MAX_VALUE)
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
 
         jMenu_Cliente.setText("Cliente");
+        jMenu_Cliente.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
 
+        jmi_Cliente.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_customer_25.png"))); // NOI18N
         jmi_Cliente.setText("Cliente");
         jmi_Cliente.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +83,7 @@ public class Tela_Principal extends javax.swing.JFrame {
         });
         jMenu_Cliente.add(jmi_Cliente);
 
+        jmi_animal.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_animal_25.png"))); // NOI18N
         jmi_animal.setText("Animal");
         jMenu_Cliente.add(jmi_animal);
@@ -88,11 +91,14 @@ public class Tela_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu_Cliente);
 
         jMenu_Gestao.setText("Gestão");
+        jMenu_Gestao.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
 
+        jmi_Funcionarios.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_Funcionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_employee_25.png"))); // NOI18N
         jmi_Funcionarios.setText("Funcionários");
         jMenu_Gestao.add(jmi_Funcionarios);
 
+        jMenuItem1.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_motobike_25.png"))); // NOI18N
         jMenuItem1.setText("Veículos");
         jMenu_Gestao.add(jMenuItem1);
@@ -107,6 +113,7 @@ public class Tela_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu_Gestao);
 
         jMenu_Movimentos.setText("Movimentos");
+        jMenu_Movimentos.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
 
         jm_Caixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_cash_register_25.png"))); // NOI18N
         jm_Caixa.setText("Caixa");
@@ -137,7 +144,9 @@ public class Tela_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu_Movimentos);
 
         jMenu_Sair.setText("Sair");
+        jMenu_Sair.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
 
+        jmi_Sair.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_exit_sign_25.png"))); // NOI18N
         jmi_Sair.setText("Sair");
         jmi_Sair.addActionListener(new java.awt.event.ActionListener() {
@@ -155,13 +164,11 @@ public class Tela_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jDesktopPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
