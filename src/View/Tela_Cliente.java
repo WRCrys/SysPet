@@ -10,6 +10,7 @@ import Model.Cliente;
 import Variables.Variaveis;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -22,6 +23,8 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form Tela_Cliente
      */
+    Cliente cliente = new Cliente();
+    
     public Tela_Cliente() {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) jt_Clientes.getModel ();
@@ -77,6 +80,16 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jt_Clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_ClientesMouseClicked(evt);
+            }
+        });
+        jt_Clientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jt_ClientesKeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jt_Clientes);
@@ -153,10 +166,20 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
         jb_Cli_Atualizar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
         jb_Cli_Atualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_update_25.png"))); // NOI18N
         jb_Cli_Atualizar.setText("Atualizar");
+        jb_Cli_Atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Cli_AtualizarActionPerformed(evt);
+            }
+        });
 
         jb_Cli_Excluir.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
         jb_Cli_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_trash_25.png"))); // NOI18N
         jb_Cli_Excluir.setText("Excluir");
+        jb_Cli_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Cli_ExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -192,6 +215,56 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
         Cadastro_Cliente cc = new Cadastro_Cliente(null, true);
         cc.setVisible(true);
     }//GEN-LAST:event_jb_Cli_CadastrarActionPerformed
+
+    private void jt_ClientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_ClientesKeyReleased
+        // TODO add your handling code here:
+        //Getting id from table
+        /*if(jt_Clientes.getSelectedRow() != -1){
+            Cliente cliente = new Cliente();
+            cliente.setId((int)jt_Clientes.getValueAt(jt_Clientes.getSelectedRow(), 0));
+            System.out.println("Customer's id from table: "+cliente.getId()+" key released.");
+        }*/
+    }//GEN-LAST:event_jt_ClientesKeyReleased
+
+    private void jt_ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_ClientesMouseClicked
+        // TODO add your handling code here:
+        //Getting id from table
+        if(jt_Clientes.getSelectedRow() != -1){
+            cliente.setId((int)jt_Clientes.getValueAt(jt_Clientes.getSelectedRow(), 0));
+            Variaveis.UPDATE = true;
+            System.out.println("Customer's id from table: "+cliente.getId());
+        }
+    }//GEN-LAST:event_jt_ClientesMouseClicked
+
+    private void jb_Cli_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_AtualizarActionPerformed
+        // TODO add your handling code here:
+        if (Variaveis.UPDATE == true) {
+            Variaveis.ID = cliente.getId();
+            Cadastro_Cliente cc = new Cadastro_Cliente(null, true);
+            cc.setVisible(true);
+        } else{
+            JOptionPane.showMessageDialog(this, "Você precisa clicar em um registro para atualizar!");
+        }
+
+    }//GEN-LAST:event_jb_Cli_AtualizarActionPerformed
+
+    private void jb_Cli_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_ExcluirActionPerformed
+        // TODO add your handling code here:
+        ClienteDAO clienteDAO = new ClienteDAO();
+        if(Variaveis.UPDATE == true){
+            //Delete
+            if(clienteDAO.Deletar_Cliente(cliente)){
+                try {
+                    listarjTable();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Tela_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(this, "Deletado com sucesso!");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Você precisa clicar em um registro para deletar!");
+        }
+    }//GEN-LAST:event_jb_Cli_ExcluirActionPerformed
 
     //Methods
     public void listarjTable() throws ClassNotFoundException{

@@ -9,6 +9,8 @@ import Dao.ClienteDAO;
 import Model.Cliente;
 import Variables.Variaveis;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -32,6 +34,37 @@ public class Cadastro_Cliente extends javax.swing.JDialog {
         jd_Cli_Data_Cad.setDate(dataSistema);
         
         Label_Title.setText(Variaveis.TITULO_CLIENTE);
+        
+        //System.out.println("Id: "+Variaveis.ID+" + Status: "+Variaveis.UPDATE);
+        //nome, endereco, cpf, telefone, celular, nascimento, sexo, status, cadastro
+        
+        if (Variaveis.UPDATE == true) {
+            //fetch data from database
+            ClienteDAO clienteDAO = new ClienteDAO();
+            for (Cliente c : clienteDAO.Buscar_Cliente(Variaveis.ID)) {
+                jt_Cli_Nome.setText(c.getNome());
+                jt_Cli_End.setText(c.getEndereco());
+                jft_Cli_cpf.setText(c.getCpf());
+                jft_Cli_Telefone.setText(c.getTelefone());
+                jft_Cli_Celular.setText(c.getCelular());
+                jd_Cli_Data_Nasc.setDate(c.getNascimento());
+                sexo = c.getSexo();
+                status = c.getStatus();
+                jd_Cli_Data_Cad.setDate(c.getCadastro());
+
+            }
+            
+            if(sexo.equals("Masculino")){
+                jrb_Cli_Masc.setSelected(true);
+            }else{
+                jrb_Cli_Fem.setSelected(true);
+            }
+            if(status.equals("Ativo")){
+                jrb_Cli_ativo.setSelected(true);
+            }else{
+                jrb_Cli_inativo.setSelected(true);
+            }
+        }
     }
 
     /**
@@ -434,7 +467,8 @@ public class Cadastro_Cliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jt_Cli_NomeKeyPressed
 
     private void jb_Cli_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_CancelarActionPerformed
-        // TODO add your handling code here:        
+        // TODO add your handling code here:
+        Variaveis.UPDATE = false;
         dispose();
     }//GEN-LAST:event_jb_Cli_CancelarActionPerformed
 
@@ -473,25 +507,45 @@ public class Cadastro_Cliente extends javax.swing.JDialog {
 
     private void jb_Cli_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_SalvarActionPerformed
         
-            cliente.setNome(jt_Cli_Nome.getText());
-            cliente.setEndereco(jt_Cli_End.getText());
-            cliente.setCpf(jft_Cli_cpf.getText());
-            cliente.setTelefone(jft_Cli_Telefone.getText());
-            cliente.setCelular(jft_Cli_Celular.getText());
-            cliente.setNascimento(jd_Cli_Data_Nasc.getDate());
-            cliente.setSexo(sexo);
-            cliente.setStatus(status);
-            cliente.setCadastro(jd_Cli_Data_Cad.getDate());
+        cliente.setNome(jt_Cli_Nome.getText());
+        cliente.setEndereco(jt_Cli_End.getText());
+        cliente.setCpf(jft_Cli_cpf.getText());
+        cliente.setTelefone(jft_Cli_Telefone.getText());
+        cliente.setCelular(jft_Cli_Celular.getText());
+        cliente.setNascimento(jd_Cli_Data_Nasc.getDate());
+        cliente.setSexo(sexo);
+        cliente.setStatus(status);
+        cliente.setCadastro(jd_Cli_Data_Cad.getDate());
+
+        //System.out.println("Nome: " + cliente.getNome() + " - Classe Cadastro");
+        //System.out.println("Nascimento: " + cliente.getNascimento() + " - Classe Cadastro");
+
+        if (Variaveis.UPDATE != true) {
+            //Insert
+            try {
+                // TODO add your handling code here:
+                validation();
+            } catch (ClassNotFoundException ex) {
+                //Logger.getLogger(Cadastro_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else{
+            //Update
+            ClienteDAO clienteDAO = new ClienteDAO();
+            Tela_Cliente tc = new Tela_Cliente();
+            cliente.setId(Variaveis.ID);
+            if(clienteDAO.Atualizar_Cliente(cliente)){
+                JOptionPane.showMessageDialog(this, "Atualizado com sucesso!");
+                try {
+                    tc.listarjTable();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Cadastro_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                dispose();
+            }
             
-            System.out.println("Nome: "+cliente.getNome()+" - Classe Cadastro");
-            System.out.println("Nascimento: "+cliente.getNascimento()+" - Classe Cadastro");
-        
-        try {
-            // TODO add your handling code here:
-            validation();
-        } catch (ClassNotFoundException ex) {
-            //Logger.getLogger(Cadastro_Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
 
     }//GEN-LAST:event_jb_Cli_SalvarActionPerformed
 
@@ -517,6 +571,7 @@ public class Cadastro_Cliente extends javax.swing.JDialog {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
+        Variaveis.UPDATE = false;
         dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
@@ -606,7 +661,8 @@ public class Cadastro_Cliente extends javax.swing.JDialog {
             
 
         }
-    }
+    }  
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_Title;

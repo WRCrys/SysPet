@@ -21,4 +21,8 @@ public class Variaveis {
     public static String TITULO_FUNCIONARIO = "Funcionários";
     public static String USUARIO_SISTEMA;
     
+    public static boolean UPDATE = false;
+    public static Integer ID;
+    
+    
 }

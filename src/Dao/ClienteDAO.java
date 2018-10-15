@@ -74,5 +74,81 @@ public class ClienteDAO {
         }
         return clientes;
     }
+    
+   public static boolean Atualizar_Cliente(Cliente c) {
+        sql = "Update " + Variaveis.TB_CLIENTE + " set nome = ?, endereco = ?, cpf = ?, telefone = ?, celular = ?, nascimento = ?,"
+                + " sexo = ?, status = ?, cadastro = ? where id = ?";
+        try {            
+            conmysql = conexaomysql.conectabdmysql();
+            psmt = conmysql.prepareStatement(sql);
+            psmt.setString(1, c.getNome());
+            psmt.setString(2, c.getEndereco());
+            psmt.setString(3, c.getCpf());
+            psmt.setString(4, c.getTelefone());
+            psmt.setString(5, c.getCelular());
+            psmt.setDate(6, new java.sql.Date(c.getNascimento().getTime()));
+            psmt.setString(7, c.getSexo());
+            psmt.setString(8, c.getStatus());
+            psmt.setDate(9, new java.sql.Date(c.getCadastro().getTime()));
+            psmt.setInt(10, c.getId());
+            psmt.executeUpdate();
+            psmt.close();
+            return true;
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error);
+            return false;
+        }
+    }
+   
+   public List<Cliente> Buscar_Cliente(Integer id){
+        
+    List<Cliente> clientes = new ArrayList<>();
+        
+        sql = "Select nome, endereco, cpf, telefone, celular, nascimento, sexo, status, cadastro"
+                + " from "+Variaveis.TB_CLIENTE+" where id = ?";
+        
+        try {
+            conmysql = conexaomysql.conectabdmysql();
+            psmt = conmysql.prepareStatement(sql);
+            psmt.setInt(1, id);
+            rs = psmt.executeQuery();   
+
+            while(rs.next()){
+                Cliente cliente = new Cliente();
+                cliente.setNome(rs.getString("nome"));
+                cliente.setEndereco(rs.getString("endereco"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setCelular(rs.getString("celular"));
+                cliente.setNascimento(rs.getDate("nascimento"));
+                cliente.setSexo(rs.getString("sexo"));
+                cliente.setStatus(rs.getString("status"));
+                cliente.setCadastro(rs.getDate("cadastro"));
+                clientes.add(cliente);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return clientes;
+    }
+   
+   public static boolean Deletar_Cliente(Cliente c) {
+        sql = "Delete from " + Variaveis.TB_CLIENTE + " where id = ?";
+        try {            
+            conmysql = conexaomysql.conectabdmysql();
+            psmt = conmysql.prepareStatement(sql);
+            psmt.setInt(1, c.getId());
+            psmt.execute();
+            psmt.close();
+            return true;
+
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error);
+            return false;
+        }
+    }
 
 }
