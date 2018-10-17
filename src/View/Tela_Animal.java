@@ -18,22 +18,20 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Skalybuhr
  */
-public class Tela_Cliente extends javax.swing.JInternalFrame {
+public class Tela_Animal extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Tela_Cliente
+     * Creates new form Tela_Animal
      */
     Cliente cliente = new Cliente();
     
-    public Tela_Cliente() {
+    public Tela_Animal() {
         initComponents();
-        DefaultTableModel modelo = (DefaultTableModel) jt_Clientes.getModel ();
-        jt_Clientes.setRowSorter(new TableRowSorter(modelo));
         
         try {
             listarjTable();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Tela_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Animal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -54,14 +52,14 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
         jt_Cli_Buscar = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jb_Cli_Cadastrar = new javax.swing.JButton();
-        jb_Cli_Atualizar = new javax.swing.JButton();
-        jb_Cli_Excluir = new javax.swing.JButton();
-        jb_Cli_Vizualizar = new javax.swing.JButton();
+        jb_Ani_Cadastrar = new javax.swing.JButton();
+        jb_Ani_Atualizar = new javax.swing.JButton();
+        jb_Ani_Excluir = new javax.swing.JButton();
+        jb_Ani_Vizualizar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle(Variaveis.TITULO_CLIENTE);
+        setTitle(Variaveis.TITULO_ANIMAL);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 77, 77));
@@ -155,39 +153,39 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jb_Cli_Cadastrar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
-        jb_Cli_Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_add_25.png"))); // NOI18N
-        jb_Cli_Cadastrar.setText("Cadastrar");
-        jb_Cli_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jb_Ani_Cadastrar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
+        jb_Ani_Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_add_25.png"))); // NOI18N
+        jb_Ani_Cadastrar.setText("Cadastrar");
+        jb_Ani_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_Cli_CadastrarActionPerformed(evt);
+                jb_Ani_CadastrarActionPerformed(evt);
             }
         });
 
-        jb_Cli_Atualizar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
-        jb_Cli_Atualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_update_25.png"))); // NOI18N
-        jb_Cli_Atualizar.setText("Atualizar");
-        jb_Cli_Atualizar.addActionListener(new java.awt.event.ActionListener() {
+        jb_Ani_Atualizar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
+        jb_Ani_Atualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_update_25.png"))); // NOI18N
+        jb_Ani_Atualizar.setText("Atualizar");
+        jb_Ani_Atualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_Cli_AtualizarActionPerformed(evt);
+                jb_Ani_AtualizarActionPerformed(evt);
             }
         });
 
-        jb_Cli_Excluir.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
-        jb_Cli_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_trash_25.png"))); // NOI18N
-        jb_Cli_Excluir.setText("Excluir");
-        jb_Cli_Excluir.addActionListener(new java.awt.event.ActionListener() {
+        jb_Ani_Excluir.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
+        jb_Ani_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_trash_25.png"))); // NOI18N
+        jb_Ani_Excluir.setText("Excluir");
+        jb_Ani_Excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_Cli_ExcluirActionPerformed(evt);
+                jb_Ani_ExcluirActionPerformed(evt);
             }
         });
 
-        jb_Cli_Vizualizar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
-        jb_Cli_Vizualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_search_25.png"))); // NOI18N
-        jb_Cli_Vizualizar.setText("Vizualizar");
-        jb_Cli_Vizualizar.addActionListener(new java.awt.event.ActionListener() {
+        jb_Ani_Vizualizar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
+        jb_Ani_Vizualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_search_25.png"))); // NOI18N
+        jb_Ani_Vizualizar.setText("Vizualizar");
+        jb_Ani_Vizualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_Cli_VizualizarActionPerformed(evt);
+                jb_Ani_VizualizarActionPerformed(evt);
             }
         });
 
@@ -198,23 +196,23 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jb_Cli_Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb_Cli_Atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb_Cli_Excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb_Cli_Vizualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jb_Ani_Cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_Ani_Atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_Ani_Excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_Ani_Vizualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(47, 47, 47))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jb_Cli_Cadastrar)
+                .addComponent(jb_Ani_Cadastrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jb_Cli_Vizualizar)
+                .addComponent(jb_Ani_Vizualizar)
                 .addGap(33, 33, 33)
-                .addComponent(jb_Cli_Atualizar)
+                .addComponent(jb_Ani_Atualizar)
                 .addGap(33, 33, 33)
-                .addComponent(jb_Cli_Excluir)
+                .addComponent(jb_Ani_Excluir)
                 .addGap(78, 78, 78))
         );
 
@@ -223,11 +221,11 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jb_Cli_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_CadastrarActionPerformed
+    private void jb_Ani_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_CadastrarActionPerformed
         // TODO add your handling code here:
-        Cadastro_Cliente cc = new Cadastro_Cliente(null, true);
-        cc.setVisible(true);
-    }//GEN-LAST:event_jb_Cli_CadastrarActionPerformed
+        Cadastro_Animal ca = new Cadastro_Animal(null, true);
+        ca.setVisible(true);
+    }//GEN-LAST:event_jb_Ani_CadastrarActionPerformed
 
     private void jt_ClientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_ClientesKeyReleased
         // TODO add your handling code here:
@@ -249,7 +247,7 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jt_ClientesMouseClicked
 
-    private void jb_Cli_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_AtualizarActionPerformed
+    private void jb_Ani_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_AtualizarActionPerformed
         // TODO add your handling code here:
         if (Variaveis.UPDATE == true) {
             Variaveis.ID = cliente.getId();
@@ -259,9 +257,9 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Você precisa clicar em um registro para atualizar!");
         }
 
-    }//GEN-LAST:event_jb_Cli_AtualizarActionPerformed
+    }//GEN-LAST:event_jb_Ani_AtualizarActionPerformed
 
-    private void jb_Cli_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_ExcluirActionPerformed
+    private void jb_Ani_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_ExcluirActionPerformed
         // TODO add your handling code here:
         ClienteDAO clienteDAO = new ClienteDAO();
         if(Variaveis.UPDATE == true){
@@ -270,16 +268,16 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
                 try {
                     listarjTable();
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Tela_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Tela_Animal.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(this, "Deletado com sucesso!");
             }
         }else{
             JOptionPane.showMessageDialog(this, "Você precisa clicar em um registro para deletar!");
         }
-    }//GEN-LAST:event_jb_Cli_ExcluirActionPerformed
+    }//GEN-LAST:event_jb_Ani_ExcluirActionPerformed
 
-    private void jb_Cli_VizualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_VizualizarActionPerformed
+    private void jb_Ani_VizualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_VizualizarActionPerformed
         // TODO add your handling code here:
         Variaveis.SEE = true;
         if (Variaveis.UPDATE == true) {
@@ -289,7 +287,7 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
         } else{
             JOptionPane.showMessageDialog(this, "Você precisa clicar em um registro para vizualizar!");
         }
-    }//GEN-LAST:event_jb_Cli_VizualizarActionPerformed
+    }//GEN-LAST:event_jb_Ani_VizualizarActionPerformed
 
     //Methods
     public void listarjTable() throws ClassNotFoundException{
@@ -315,10 +313,10 @@ public class Tela_Cliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jb_Cli_Atualizar;
-    private javax.swing.JButton jb_Cli_Cadastrar;
-    private javax.swing.JButton jb_Cli_Excluir;
-    private javax.swing.JButton jb_Cli_Vizualizar;
+    private javax.swing.JButton jb_Ani_Atualizar;
+    private javax.swing.JButton jb_Ani_Cadastrar;
+    private javax.swing.JButton jb_Ani_Excluir;
+    private javax.swing.JButton jb_Ani_Vizualizar;
     private javax.swing.JTextField jt_Cli_Buscar;
     private javax.swing.JTable jt_Clientes;
     // End of variables declaration//GEN-END:variables

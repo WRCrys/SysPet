@@ -22,6 +22,7 @@ public class Variaveis {
     public static String USUARIO_SISTEMA;
     
     public static boolean UPDATE = false;
+    public static boolean SEE = false;
     public static Integer ID;
     
     

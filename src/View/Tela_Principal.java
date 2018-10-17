@@ -42,6 +42,7 @@ public class Tela_Principal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jmi_Cargos = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu_Movimentos = new javax.swing.JMenu();
         jm_Caixa = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -50,6 +51,7 @@ public class Tela_Principal extends javax.swing.JFrame {
         jmi_Produtos = new javax.swing.JMenuItem();
         jmi_Categ_Prod = new javax.swing.JMenuItem();
         jmi_Venda = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu_Sair = new javax.swing.JMenu();
         jmi_Sair = new javax.swing.JMenuItem();
 
@@ -86,6 +88,11 @@ public class Tela_Principal extends javax.swing.JFrame {
         jmi_animal.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_animal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_animal_25.png"))); // NOI18N
         jmi_animal.setText("Animal");
+        jmi_animal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_animalActionPerformed(evt);
+            }
+        });
         jMenu_Cliente.add(jmi_animal);
 
         jMenuBar1.add(jMenu_Cliente);
@@ -103,12 +110,20 @@ public class Tela_Principal extends javax.swing.JFrame {
         jMenuItem1.setText("Veículos");
         jMenu_Gestao.add(jMenuItem1);
 
+        jmi_Cargos.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_Cargos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_carrer_25.png"))); // NOI18N
         jmi_Cargos.setText("Cargos");
         jMenu_Gestao.add(jmi_Cargos);
 
+        jMenuItem4.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_supplier_25.png"))); // NOI18N
         jMenuItem4.setText("Fornecedores");
         jMenu_Gestao.add(jMenuItem4);
+
+        jMenuItem5.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_service_25.png"))); // NOI18N
+        jMenuItem5.setText("Serviços");
+        jMenu_Gestao.add(jMenuItem5);
 
         jMenuBar1.add(jMenu_Gestao);
 
@@ -117,10 +132,13 @@ public class Tela_Principal extends javax.swing.JFrame {
 
         jm_Caixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_cash_register_25.png"))); // NOI18N
         jm_Caixa.setText("Caixa");
+        jm_Caixa.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
 
+        jMenuItem2.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jMenuItem2.setText("Movimentações");
         jm_Caixa.add(jMenuItem2);
 
+        jMenuItem3.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jMenuItem3.setText("Lançamentos");
         jm_Caixa.add(jMenuItem3);
 
@@ -128,18 +146,27 @@ public class Tela_Principal extends javax.swing.JFrame {
 
         jm_Estoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_cardboard_box_25.png"))); // NOI18N
         jm_Estoque.setText("Estoque");
+        jm_Estoque.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
 
+        jmi_Produtos.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_Produtos.setText("Produtos");
         jm_Estoque.add(jmi_Produtos);
 
+        jmi_Categ_Prod.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_Categ_Prod.setText("Categoria de Produtos");
         jm_Estoque.add(jmi_Categ_Prod);
 
         jMenu_Movimentos.add(jm_Estoque);
 
+        jmi_Venda.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jmi_Venda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_sale_25.png"))); // NOI18N
         jmi_Venda.setText("Venda");
         jMenu_Movimentos.add(jmi_Venda);
+
+        jMenuItem6.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_service_25.png"))); // NOI18N
+        jMenuItem6.setText("Serviços");
+        jMenu_Movimentos.add(jMenuItem6);
 
         jMenuBar1.add(jMenu_Movimentos);
 
@@ -187,6 +214,13 @@ public class Tela_Principal extends javax.swing.JFrame {
         tc.setVisible(true);
     }//GEN-LAST:event_jmi_ClienteActionPerformed
 
+    private void jmi_animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_animalActionPerformed
+        // TODO add your handling code here:
+        Tela_Animal ta = new Tela_Animal();
+        jDesktopPane.add(ta);
+        ta.setVisible(true);
+    }//GEN-LAST:event_jmi_animalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -230,6 +264,8 @@ public class Tela_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMenu_Cliente;
     private javax.swing.JMenu jMenu_Gestao;
     private javax.swing.JMenu jMenu_Movimentos;
