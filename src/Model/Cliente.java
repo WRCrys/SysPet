@@ -2,7 +2,6 @@ package Model;
 
 import java.util.Date;
 
-
 /**
  *
  * @author Skalybuhr
@@ -18,6 +17,22 @@ public class Cliente {
     public Date nascimento;
     public String sexo;
     public String status;
+
+    public Cliente() {
+    }
+
+    public Cliente(Integer id, String nome, String endereco, String cpf, String telefone, String celular, Date nascimento, String sexo, String status, Date cadastro) {
+        this.id = id;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.nascimento = nascimento;
+        this.sexo = sexo;
+        this.status = status;
+        this.cadastro = cadastro;
+    }
 
     public Integer getId() {
         return id;

@@ -5,12 +5,11 @@
  */
 package View;
 
-import Dao.ClienteDAO;
+import Dao.*;
+import Model.Animal;
 import Model.Cliente;
 import Variables.Variaveis;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -24,13 +23,14 @@ public class Cadastro_Animal extends javax.swing.JDialog {
      * Creates new form Cadastro_Animal
      */
     String sexo, status;
+    Animal animal = new Animal();
 
     public Cadastro_Animal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
-        //Date dataSistema = new Date();
-        //jd_Cli_Data_Cad.setDate(dataSistema);
+        Date dataSistema = new Date();
+        jd_Anii_Data_Cad.setDate(dataSistema);
         
         Label_Title.setText(Variaveis.TITULO_ANIMAL);
         
@@ -38,6 +38,8 @@ public class Cadastro_Animal extends javax.swing.JDialog {
             //fetch data from database
             
         }
+        
+        List_Id_Combobox();
     }
 
     /**
@@ -57,35 +59,37 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jt_Ani_Nome = new javax.swing.JTextField();
-        jd_Cli_Data_Nasc = new com.toedter.calendar.JDateChooser();
+        jd_Ani_Data_Nasc = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jrb_Cli_Masc = new javax.swing.JRadioButton();
-        jrb_Cli_Fem = new javax.swing.JRadioButton();
+        jrb_Ani_Macho = new javax.swing.JRadioButton();
+        jrb_Ani_Femia = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
-        jrb_Cli_ativo = new javax.swing.JRadioButton();
-        jrb_Cli_inativo = new javax.swing.JRadioButton();
+        jrb_Ani_Ativo = new javax.swing.JRadioButton();
+        jrb_Ani_Inativo = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
-        jd_Cli_Data_Cad = new com.toedter.calendar.JDateChooser();
+        jd_Anii_Data_Cad = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcb_Ani_Especie = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        jcb_Ani_Prop_Cod = new javax.swing.JComboBox<>();
+        jt_Ani_Prop_Nome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jt_Cli_End = new javax.swing.JTextField();
+        jt_Ani_Prop_End = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jft_Cli_Telefone = new javax.swing.JFormattedTextField();
-        jft_Cli_Celular = new javax.swing.JFormattedTextField();
-        jb_Cli_Cancelar = new javax.swing.JButton();
-        jb_Cli_Limpar = new javax.swing.JButton();
-        jb_Cli_Salvar = new javax.swing.JButton();
+        jft_Ani_Prop_Telefone = new javax.swing.JFormattedTextField();
+        jft_Ani_Prop_Celular = new javax.swing.JFormattedTextField();
+        jb_Ani_Cancelar = new javax.swing.JButton();
+        jb_Ani_Limpar = new javax.swing.JButton();
+        jb_Ani_Salvar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jt_Ani_Servicos = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        jt_Ani_Raca = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -141,7 +145,7 @@ public class Cadastro_Animal extends javax.swing.JDialog {
             }
         });
 
-        jd_Cli_Data_Nasc.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+        jd_Ani_Data_Nasc.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jLabel6.setText("Data de Nascimento:");
@@ -149,21 +153,21 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sexo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft JhengHei Light", 0, 11))); // NOI18N
 
-        bg_Cli_Sexo.add(jrb_Cli_Masc);
-        jrb_Cli_Masc.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
-        jrb_Cli_Masc.setText("Masculino");
-        jrb_Cli_Masc.addMouseListener(new java.awt.event.MouseAdapter() {
+        bg_Cli_Sexo.add(jrb_Ani_Macho);
+        jrb_Ani_Macho.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
+        jrb_Ani_Macho.setText("Macho");
+        jrb_Ani_Macho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jrb_Cli_MascMouseClicked(evt);
+                jrb_Ani_MachoMouseClicked(evt);
             }
         });
 
-        bg_Cli_Sexo.add(jrb_Cli_Fem);
-        jrb_Cli_Fem.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
-        jrb_Cli_Fem.setText("Feminino");
-        jrb_Cli_Fem.addMouseListener(new java.awt.event.MouseAdapter() {
+        bg_Cli_Sexo.add(jrb_Ani_Femia);
+        jrb_Ani_Femia.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
+        jrb_Ani_Femia.setText("Fêmia");
+        jrb_Ani_Femia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jrb_Cli_FemMouseClicked(evt);
+                jrb_Ani_FemiaMouseClicked(evt);
             }
         });
 
@@ -174,38 +178,38 @@ public class Cadastro_Animal extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrb_Cli_Masc)
-                    .addComponent(jrb_Cli_Fem))
+                    .addComponent(jrb_Ani_Macho)
+                    .addComponent(jrb_Ani_Femia))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jrb_Cli_Masc)
+                .addComponent(jrb_Ani_Macho)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jrb_Cli_Fem)
+                .addComponent(jrb_Ani_Femia)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft JhengHei Light", 0, 11))); // NOI18N
 
-        bg_Cli_Status.add(jrb_Cli_ativo);
-        jrb_Cli_ativo.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
-        jrb_Cli_ativo.setText("Ativo");
-        jrb_Cli_ativo.addMouseListener(new java.awt.event.MouseAdapter() {
+        bg_Cli_Status.add(jrb_Ani_Ativo);
+        jrb_Ani_Ativo.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
+        jrb_Ani_Ativo.setText("Ativo");
+        jrb_Ani_Ativo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jrb_Cli_ativoMouseClicked(evt);
+                jrb_Ani_AtivoMouseClicked(evt);
             }
         });
 
-        bg_Cli_Status.add(jrb_Cli_inativo);
-        jrb_Cli_inativo.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
-        jrb_Cli_inativo.setText("Inativo");
-        jrb_Cli_inativo.addMouseListener(new java.awt.event.MouseAdapter() {
+        bg_Cli_Status.add(jrb_Ani_Inativo);
+        jrb_Ani_Inativo.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
+        jrb_Ani_Inativo.setText("Inativo");
+        jrb_Ani_Inativo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jrb_Cli_inativoMouseClicked(evt);
+                jrb_Ani_InativoMouseClicked(evt);
             }
         });
 
@@ -216,32 +220,32 @@ public class Cadastro_Animal extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrb_Cli_ativo)
-                    .addComponent(jrb_Cli_inativo))
+                    .addComponent(jrb_Ani_Ativo)
+                    .addComponent(jrb_Ani_Inativo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jrb_Cli_ativo)
+                .addComponent(jrb_Ani_Ativo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jrb_Cli_inativo)
+                .addComponent(jrb_Ani_Inativo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jLabel7.setText("Data de Cadastro:");
 
-        jd_Cli_Data_Cad.setBackground(new java.awt.Color(255, 255, 255));
-        jd_Cli_Data_Cad.setEnabled(false);
-        jd_Cli_Data_Cad.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+        jd_Anii_Data_Cad.setBackground(new java.awt.Color(255, 255, 255));
+        jd_Anii_Data_Cad.setEnabled(false);
+        jd_Anii_Data_Cad.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jLabel9.setText("Espécie:");
 
-        jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma espécie...", "Cão", "Gato", "Ave", "Peixe", "Outros" }));
+        jcb_Ani_Especie.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
+        jcb_Ani_Especie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma espécie...", "Cão", "Gato", "Ave", "Peixe", "Outros" }));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Proprietário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft JhengHei Light", 0, 12))); // NOI18N
@@ -252,23 +256,28 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jLabel10.setText("Nome:");
 
-        jComboBox2.setEditable(true);
-        jComboBox2.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+        jcb_Ani_Prop_Cod.setEditable(true);
+        jcb_Ani_Prop_Cod.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+        jcb_Ani_Prop_Cod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcb_Ani_Prop_CodActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+        jt_Ani_Prop_Nome.setEditable(false);
+        jt_Ani_Prop_Nome.setBackground(new java.awt.Color(255, 255, 255));
+        jt_Ani_Prop_Nome.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jLabel2.setText("Endereço:");
 
-        jt_Cli_End.setEditable(false);
-        jt_Cli_End.setBackground(new java.awt.Color(255, 255, 255));
-        jt_Cli_End.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
-        jt_Cli_End.setToolTipText("");
-        jt_Cli_End.addKeyListener(new java.awt.event.KeyAdapter() {
+        jt_Ani_Prop_End.setEditable(false);
+        jt_Ani_Prop_End.setBackground(new java.awt.Color(255, 255, 255));
+        jt_Ani_Prop_End.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+        jt_Ani_Prop_End.setToolTipText("");
+        jt_Ani_Prop_End.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jt_Cli_EndKeyPressed(evt);
+                jt_Ani_Prop_EndKeyPressed(evt);
             }
         });
 
@@ -278,31 +287,31 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
         jLabel4.setText("Celular:");
 
-        jft_Cli_Telefone.setEditable(false);
-        jft_Cli_Telefone.setBackground(new java.awt.Color(255, 255, 255));
+        jft_Ani_Prop_Telefone.setEditable(false);
+        jft_Ani_Prop_Telefone.setBackground(new java.awt.Color(255, 255, 255));
         try {
-            jft_Cli_Telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####.####")));
+            jft_Ani_Prop_Telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####.####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jft_Cli_Telefone.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
-        jft_Cli_Telefone.addKeyListener(new java.awt.event.KeyAdapter() {
+        jft_Ani_Prop_Telefone.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+        jft_Ani_Prop_Telefone.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jft_Cli_TelefoneKeyPressed(evt);
+                jft_Ani_Prop_TelefoneKeyPressed(evt);
             }
         });
 
-        jft_Cli_Celular.setEditable(false);
-        jft_Cli_Celular.setBackground(new java.awt.Color(255, 255, 255));
+        jft_Ani_Prop_Celular.setEditable(false);
+        jft_Ani_Prop_Celular.setBackground(new java.awt.Color(255, 255, 255));
         try {
-            jft_Cli_Celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####.####")));
+            jft_Ani_Prop_Celular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####.####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jft_Cli_Celular.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
-        jft_Cli_Celular.addKeyListener(new java.awt.event.KeyAdapter() {
+        jft_Ani_Prop_Celular.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+        jft_Ani_Prop_Celular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jft_Cli_CelularKeyPressed(evt);
+                jft_Ani_Prop_CelularKeyPressed(evt);
             }
         });
 
@@ -319,7 +328,7 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                                 .addComponent(jLabel5))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jcb_Ani_Prop_Cod, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(19, 19, 19)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -327,21 +336,21 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jTextField1))))
+                                .addComponent(jt_Ani_Prop_Nome))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jt_Cli_End))
+                                .addComponent(jt_Ani_Prop_End))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(jft_Cli_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jft_Ani_Prop_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(32, 32, 32)
-                                        .addComponent(jft_Cli_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jft_Ani_Prop_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(114, 114, 114)
@@ -358,55 +367,55 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcb_Ani_Prop_Cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jt_Ani_Prop_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jt_Cli_End, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jt_Ani_Prop_End, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jft_Cli_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jft_Cli_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jft_Ani_Prop_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jft_Ani_Prop_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jb_Cli_Cancelar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
-        jb_Cli_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_cancel_25.png"))); // NOI18N
-        jb_Cli_Cancelar.setText("Cancelar");
-        jb_Cli_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+        jb_Ani_Cancelar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
+        jb_Ani_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_cancel_25.png"))); // NOI18N
+        jb_Ani_Cancelar.setText("Cancelar");
+        jb_Ani_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_Cli_CancelarActionPerformed(evt);
+                jb_Ani_CancelarActionPerformed(evt);
             }
         });
 
-        jb_Cli_Limpar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
-        jb_Cli_Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_broom_25.png"))); // NOI18N
-        jb_Cli_Limpar.setText("Limpar");
-        jb_Cli_Limpar.addActionListener(new java.awt.event.ActionListener() {
+        jb_Ani_Limpar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
+        jb_Ani_Limpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_broom_25.png"))); // NOI18N
+        jb_Ani_Limpar.setText("Limpar");
+        jb_Ani_Limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_Cli_LimparActionPerformed(evt);
+                jb_Ani_LimparActionPerformed(evt);
             }
         });
 
-        jb_Cli_Salvar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
-        jb_Cli_Salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_save_25.png"))); // NOI18N
-        jb_Cli_Salvar.setText("Salvar");
-        jb_Cli_Salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jb_Cli_Salvar.addActionListener(new java.awt.event.ActionListener() {
+        jb_Ani_Salvar.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 14)); // NOI18N
+        jb_Ani_Salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons_save_25.png"))); // NOI18N
+        jb_Ani_Salvar.setText("Salvar");
+        jb_Ani_Salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jb_Ani_Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_Cli_SalvarActionPerformed(evt);
+                jb_Ani_SalvarActionPerformed(evt);
             }
         });
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Serviços Executados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI Light", 0, 12))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jt_Ani_Servicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -425,7 +434,7 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jt_Ani_Servicos);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -443,39 +452,24 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jLabel11.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
+        jLabel11.setText("Raça:");
+
+        jt_Ani_Raca.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 11)); // NOI18N
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jb_Cli_Salvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                        .addComponent(jb_Cli_Limpar)
-                        .addGap(100, 100, 100)
-                        .addComponent(jb_Cli_Cancelar))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jt_Ani_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jd_Cli_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jd_Ani_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
@@ -485,9 +479,40 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                             .addComponent(jLabel7)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jd_Cli_Data_Cad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(32, 32, 32))
+                                .addComponent(jd_Anii_Data_Cad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jt_Ani_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jcb_Ani_Especie, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel11)
+                                .addContainerGap(156, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jt_Ani_Raca, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jb_Ani_Salvar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                                .addComponent(jb_Ani_Limpar)
+                                .addGap(100, 100, 100)
+                                .addComponent(jb_Ani_Cancelar))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(32, 32, 32))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,11 +520,13 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jt_Ani_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcb_Ani_Especie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jt_Ani_Raca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -508,19 +535,19 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jd_Cli_Data_Cad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jd_Anii_Data_Cad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jd_Cli_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jd_Ani_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jb_Cli_Cancelar)
-                    .addComponent(jb_Cli_Limpar)
-                    .addComponent(jb_Cli_Salvar))
+                    .addComponent(jb_Ani_Cancelar)
+                    .addComponent(jb_Ani_Limpar)
+                    .addComponent(jb_Ani_Salvar))
                 .addGap(171, 171, 171))
         );
 
@@ -549,46 +576,65 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         // TODO add your handling code here:        
         if (evt.getKeyCode() == evt.VK_ENTER) {
             //proximo campo
-            jt_Cli_End.requestFocus();
+            jt_Ani_Prop_End.requestFocus();
         }
     }//GEN-LAST:event_jt_Ani_NomeKeyPressed
 
-    private void jb_Cli_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_CancelarActionPerformed
+    private void jb_Ani_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_CancelarActionPerformed
         // TODO add your handling code here:
         Variaveis.UPDATE = false;
         dispose();
-    }//GEN-LAST:event_jb_Cli_CancelarActionPerformed
+    }//GEN-LAST:event_jb_Ani_CancelarActionPerformed
 
-    private void jt_Cli_EndKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_Cli_EndKeyPressed
+    private void jt_Ani_Prop_EndKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_Ani_Prop_EndKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == evt.VK_ENTER) {
             //jft_Cli_cpf.requestFocus();
         }
-    }//GEN-LAST:event_jt_Cli_EndKeyPressed
+    }//GEN-LAST:event_jt_Ani_Prop_EndKeyPressed
 
-    private void jft_Cli_TelefoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jft_Cli_TelefoneKeyPressed
+    private void jft_Ani_Prop_TelefoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jft_Ani_Prop_TelefoneKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == evt.VK_ENTER) {
-            jft_Cli_Celular.requestFocus();
+            jft_Ani_Prop_Celular.requestFocus();
         }
-    }//GEN-LAST:event_jft_Cli_TelefoneKeyPressed
+    }//GEN-LAST:event_jft_Ani_Prop_TelefoneKeyPressed
 
-    private void jft_Cli_CelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jft_Cli_CelularKeyPressed
+    private void jft_Ani_Prop_CelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jft_Ani_Prop_CelularKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == evt.VK_ENTER) {
-            jd_Cli_Data_Nasc.requestFocus();
+            jd_Ani_Data_Nasc.requestFocus();
         }
-    }//GEN-LAST:event_jft_Cli_CelularKeyPressed
+    }//GEN-LAST:event_jft_Ani_Prop_CelularKeyPressed
 
-    private void jb_Cli_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_LimparActionPerformed
+    private void jb_Ani_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_LimparActionPerformed
         // TODO add your handling code here:
         clean();
-    }//GEN-LAST:event_jb_Cli_LimparActionPerformed
+    }//GEN-LAST:event_jb_Ani_LimparActionPerformed
 
-    private void jb_Cli_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Cli_SalvarActionPerformed
-        
-        if (Variaveis.UPDATE != true) {
+    private void jb_Ani_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_SalvarActionPerformed
+        Cliente cliente = new Cliente();
+        cliente.setId(Integer.parseInt(jcb_Ani_Prop_Cod.getSelectedItem().toString()));
+        animal.setNome(jt_Ani_Nome.getText());
+        animal.setEspecie(jcb_Ani_Especie.getSelectedItem().toString());
+        animal.setRaca(jt_Ani_Raca.getText());
+        animal.setProprietario(cliente);
+        animal.setNascimento(jd_Ani_Data_Nasc.getDate());
+        animal.setCadastro(jd_Anii_Data_Cad.getDate());
+        animal.setSexo(sexo);
+        animal.setStatus(status);
+        System.out.println("PK: "+cliente.getId());
+        if (Variaveis.UPDATE != true && Variaveis.SEE == false) {
             //Insert
+            if(validation()){
+                if(AnimalDAO.Cadastrar_Animal(animal)){
+                    JOptionPane.showMessageDialog(this, "Registro salvo com suceso!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao salvar o registro!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Campos vazios!");
+            }
             
         } else{
             //Update
@@ -597,33 +643,47 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         
         
 
-    }//GEN-LAST:event_jb_Cli_SalvarActionPerformed
+    }//GEN-LAST:event_jb_Ani_SalvarActionPerformed
 
-    private void jrb_Cli_MascMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Cli_MascMouseClicked
+    private void jrb_Ani_MachoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Ani_MachoMouseClicked
         // TODO add your handling code here:
-        sexo = "Masculino";
-    }//GEN-LAST:event_jrb_Cli_MascMouseClicked
+        sexo = "Macho";
+    }//GEN-LAST:event_jrb_Ani_MachoMouseClicked
 
-    private void jrb_Cli_FemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Cli_FemMouseClicked
+    private void jrb_Ani_FemiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Ani_FemiaMouseClicked
         // TODO add your handling code here:
-        sexo = "Feminino";
-    }//GEN-LAST:event_jrb_Cli_FemMouseClicked
+        sexo = "Femia";
+    }//GEN-LAST:event_jrb_Ani_FemiaMouseClicked
 
-    private void jrb_Cli_ativoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Cli_ativoMouseClicked
+    private void jrb_Ani_AtivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Ani_AtivoMouseClicked
         // TODO add your handling code here:
         status = "Ativo";
-    }//GEN-LAST:event_jrb_Cli_ativoMouseClicked
+    }//GEN-LAST:event_jrb_Ani_AtivoMouseClicked
 
-    private void jrb_Cli_inativoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Cli_inativoMouseClicked
+    private void jrb_Ani_InativoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Ani_InativoMouseClicked
         // TODO add your handling code here:
         status = "Inativo";
-    }//GEN-LAST:event_jrb_Cli_inativoMouseClicked
+    }//GEN-LAST:event_jrb_Ani_InativoMouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         Variaveis.UPDATE = false;
+        Variaveis.SEE = false;
         dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jcb_Ani_Prop_CodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_Ani_Prop_CodActionPerformed
+        // TODO add your handling code here:
+        Cliente cliente = new Cliente();
+        ClienteDAO clienteDAO = new ClienteDAO();
+        cliente.setId(Integer.parseInt(jcb_Ani_Prop_Cod.getSelectedItem().toString()));
+        for(Cliente c: clienteDAO.Buscar_Cliente(cliente.getId())){
+            jt_Ani_Prop_Nome.setText(c.getNome());
+            jt_Ani_Prop_End.setText(c.getEndereco());
+            jft_Ani_Prop_Telefone.setText(c.getTelefone());
+            jft_Ani_Prop_Celular.setText(c.getCelular());
+        }
+    }//GEN-LAST:event_jcb_Ani_Prop_CodActionPerformed
 
     /**
      * @param args the command line arguments
@@ -670,53 +730,67 @@ public class Cadastro_Animal extends javax.swing.JDialog {
 
     //Methods
     private void clean() {
+        //TextFields
+        jt_Ani_Nome.setText(null);
+        jt_Ani_Prop_End.setText(null);
+        jt_Ani_Prop_Nome.setText(null);
+        jt_Ani_Raca.setText(null);
+        //FormattedTextFiels
+        jft_Ani_Prop_Celular.setText(null);
+        jft_Ani_Prop_Telefone.setText(null);
+        //DateChoose
+        jd_Ani_Data_Nasc.setDate(null);
+        //ComboBox
+        jcb_Ani_Especie.setSelectedIndex(0);
+        jcb_Ani_Prop_Cod.setSelectedIndex(0);
+
+    }
+    
+    private void List_Id_Combobox(){
+        ClienteDAO clienteDAO = new ClienteDAO();
+        
+        for(Cliente c: clienteDAO.Id_Cliente()){
+            jcb_Ani_Prop_Cod.addItem(c.getId().toString());
+        }
     }
 
-    /*private void validation() throws ClassNotFoundException {
+    private boolean validation() {
         ImageIcon icon = new ImageIcon();
         icon.getClass().getResource("//Images/icons_cancel_25.png");
         String title = "Campo Obrigatório";
-        if (jt_Cli_Nome.getText().trim().isEmpty()) {
+        if (jt_Ani_Nome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campo nome vazio!", title, JOptionPane.ERROR_MESSAGE, icon);
-        } else if (jt_Cli_End.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo endereço vazio!", title, JOptionPane.ERROR_MESSAGE, icon);
-        } else if (jft_Cli_cpf.getText().equals("   .   .   -  ")) {
-            JOptionPane.showMessageDialog(null, "Campo cpf vazio!", title, JOptionPane.ERROR_MESSAGE, icon);
-        } else if (jft_Cli_Telefone.getText().equals("(  )     .    ")) {
-            JOptionPane.showMessageDialog(null, "Campo telefone vazio!", title, JOptionPane.ERROR_MESSAGE, icon);
-        } else if (jft_Cli_Celular.getText().equals("(  )      .    ")) {
-            JOptionPane.showMessageDialog(null, "Campo celular vazio!", title, JOptionPane.ERROR_MESSAGE, icon);
-        } else if (jd_Cli_Data_Nasc.getDate() == null) {
+            return false;
+        } else if (jt_Ani_Raca.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo raça vazio!", title, JOptionPane.ERROR_MESSAGE, icon);
+            return false;
+        } else if (jcb_Ani_Especie.getSelectedIndex() < 1) {
+            JOptionPane.showMessageDialog(null, "Selecione uma espécie!", title, JOptionPane.ERROR_MESSAGE, icon);
+            return false;
+        } else if (jd_Ani_Data_Nasc.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Campo data de nascimento vazio!", title, JOptionPane.ERROR_MESSAGE, icon);
+            return false;
         } else if (sexo == null) {
             JOptionPane.showMessageDialog(null, "Sexo não selecionado!", title, JOptionPane.ERROR_MESSAGE, icon);
+            return false;
         } else if (status == null) {
             JOptionPane.showMessageDialog(null, "Status não selecionado!", title, JOptionPane.ERROR_MESSAGE, icon);
+            return false;
         } else {
             System.out.println("Sending...");
-            
-            ClienteDAO clienteDAO = new ClienteDAO();
-            
-            if(clienteDAO.Cadastrar_Cliente(cliente)){                
-                JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
-                clean();
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro!");
-            }
-            
+            return true;
 
         }
-    }*/  
+    }  
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_Title;
     private javax.swing.ButtonGroup bg_Cli_Sexo;
     private javax.swing.ButtonGroup bg_Cli_Status;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -733,20 +807,23 @@ public class Cadastro_Animal extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton jb_Cli_Cancelar;
-    private javax.swing.JButton jb_Cli_Limpar;
-    private javax.swing.JButton jb_Cli_Salvar;
-    private com.toedter.calendar.JDateChooser jd_Cli_Data_Cad;
-    private com.toedter.calendar.JDateChooser jd_Cli_Data_Nasc;
-    private javax.swing.JFormattedTextField jft_Cli_Celular;
-    private javax.swing.JFormattedTextField jft_Cli_Telefone;
-    private javax.swing.JRadioButton jrb_Cli_Fem;
-    private javax.swing.JRadioButton jrb_Cli_Masc;
-    private javax.swing.JRadioButton jrb_Cli_ativo;
-    private javax.swing.JRadioButton jrb_Cli_inativo;
+    private javax.swing.JButton jb_Ani_Cancelar;
+    private javax.swing.JButton jb_Ani_Limpar;
+    private javax.swing.JButton jb_Ani_Salvar;
+    private javax.swing.JComboBox<String> jcb_Ani_Especie;
+    private javax.swing.JComboBox<String> jcb_Ani_Prop_Cod;
+    private com.toedter.calendar.JDateChooser jd_Ani_Data_Nasc;
+    private com.toedter.calendar.JDateChooser jd_Anii_Data_Cad;
+    private javax.swing.JFormattedTextField jft_Ani_Prop_Celular;
+    private javax.swing.JFormattedTextField jft_Ani_Prop_Telefone;
+    private javax.swing.JRadioButton jrb_Ani_Ativo;
+    private javax.swing.JRadioButton jrb_Ani_Femia;
+    private javax.swing.JRadioButton jrb_Ani_Inativo;
+    private javax.swing.JRadioButton jrb_Ani_Macho;
     private javax.swing.JTextField jt_Ani_Nome;
-    private javax.swing.JTextField jt_Cli_End;
+    private javax.swing.JTextField jt_Ani_Prop_End;
+    private javax.swing.JTextField jt_Ani_Prop_Nome;
+    private javax.swing.JTextField jt_Ani_Raca;
+    private javax.swing.JTable jt_Ani_Servicos;
     // End of variables declaration//GEN-END:variables
 }

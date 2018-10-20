@@ -13,6 +13,7 @@ public class Variaveis {
     public static String PASSWORD_DB = "";
     public static String TB_LOGIN = "syspet_login";
     public static String TB_CLIENTE = "syspet_cliente";
+    public static String TB_ANIMAL = "syspet_animal";
     
     //Sistema
     public static String NOME_SISTEMA = "SysPet";

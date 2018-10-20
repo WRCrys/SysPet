@@ -150,5 +150,29 @@ public class ClienteDAO {
             return false;
         }
     }
+   
+   public List<Cliente> Id_Cliente(){
+       List<Cliente> id_clientes = new ArrayList();
+       
+       sql = "Select id from "+Variaveis.TB_CLIENTE;
+       
+        try {
+            conmysql = conexaomysql.conectabdmysql();
+            psmt = conmysql.prepareStatement(sql);
+            rs = psmt.executeQuery();
+            
+            while(rs.next()){
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("id"));
+                id_clientes.add(cliente);
+            }
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return id_clientes;
+   }
 
 }
