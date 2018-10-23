@@ -38,12 +38,13 @@ public class ClienteDAO {
             psmt.setString(8, c.getStatus());
             psmt.setDate(9, new java.sql.Date(c.getCadastro().getTime()));
             psmt.execute();
-            psmt.close();
             return true;
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error);
             return false;
+        } finally{
+            conexaomysql.closeConnection(conmysql, psmt);
         }
     }
     
@@ -71,6 +72,8 @@ public class ClienteDAO {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            conexaomysql.closeConnection(conmysql, psmt, rs);
         }
         return clientes;
     }
@@ -92,12 +95,13 @@ public class ClienteDAO {
             psmt.setDate(9, new java.sql.Date(c.getCadastro().getTime()));
             psmt.setInt(10, c.getId());
             psmt.executeUpdate();
-            psmt.close();
             return true;
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error);
             return false;
+        } finally{
+            conexaomysql.closeConnection(conmysql, psmt);
         }
     }
    
@@ -131,6 +135,8 @@ public class ClienteDAO {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            conexaomysql.closeConnection(conmysql, psmt, rs);
         }
         return clientes;
     }
@@ -142,12 +148,13 @@ public class ClienteDAO {
             psmt = conmysql.prepareStatement(sql);
             psmt.setInt(1, c.getId());
             psmt.execute();
-            psmt.close();
             return true;
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, error);
             return false;
+        } finally {
+            conexaomysql.closeConnection(conmysql, psmt);
         }
     }
    
@@ -171,6 +178,8 @@ public class ClienteDAO {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            conexaomysql.closeConnection(conmysql, psmt, rs);
         }
        return id_clientes;
    }

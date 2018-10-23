@@ -36,7 +36,7 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         
         if (Variaveis.UPDATE == true) {
             //fetch data from database
-            
+            FetchDataAnimal();
         }
         
         List_Id_Combobox();
@@ -781,7 +781,9 @@ public class Cadastro_Animal extends javax.swing.JDialog {
             return true;
 
         }
-    }  
+    }
+    
+    public void FetchDataAnimal(){}
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

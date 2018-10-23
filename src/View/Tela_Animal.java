@@ -5,7 +5,9 @@
  */
 package View;
 
+import Dao.AnimalDAO;
 import Dao.ClienteDAO;
+import Model.Animal;
 import Model.Cliente;
 import Variables.Variaveis;
 import java.util.logging.Level;
@@ -23,7 +25,8 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
     /**
      * Creates new form Tela_Animal
      */
-    Cliente cliente = new Cliente();
+    Cliente cliente = new Cliente();    
+    Animal animal = new Animal();
     
     public Tela_Animal() {
         initComponents();
@@ -46,7 +49,7 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jt_Clientes = new javax.swing.JTable();
+        jtable_Animais = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jt_Cli_Buscar = new javax.swing.JTextField();
@@ -64,34 +67,34 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 77, 77));
 
-        jt_Clientes.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
-        jt_Clientes.setModel(new javax.swing.table.DefaultTableModel(
+        jtable_Animais.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 12)); // NOI18N
+        jtable_Animais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cód", "Nome", "Endereço", "Telefone", "Celular"
+                "Cód", "Nome", "Espécie", "Raça"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jt_Clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtable_Animais.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jt_ClientesMouseClicked(evt);
+                jtable_AnimaisMouseClicked(evt);
             }
         });
-        jt_Clientes.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtable_Animais.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jt_ClientesKeyReleased(evt);
+                jtable_AnimaisKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(jt_Clientes);
+        jScrollPane1.setViewportView(jtable_Animais);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -227,7 +230,7 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
         ca.setVisible(true);
     }//GEN-LAST:event_jb_Ani_CadastrarActionPerformed
 
-    private void jt_ClientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_ClientesKeyReleased
+    private void jtable_AnimaisKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtable_AnimaisKeyReleased
         // TODO add your handling code here:
         //Getting id from table
         /*if(jt_Clientes.getSelectedRow() != -1){
@@ -235,24 +238,24 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
             cliente.setId((int)jt_Clientes.getValueAt(jt_Clientes.getSelectedRow(), 0));
             System.out.println("Customer's id from table: "+cliente.getId()+" key released.");
         }*/
-    }//GEN-LAST:event_jt_ClientesKeyReleased
+    }//GEN-LAST:event_jtable_AnimaisKeyReleased
 
-    private void jt_ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_ClientesMouseClicked
+    private void jtable_AnimaisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtable_AnimaisMouseClicked
         // TODO add your handling code here:
         //Getting id from table
-        if(jt_Clientes.getSelectedRow() != -1){
-            cliente.setId((int)jt_Clientes.getValueAt(jt_Clientes.getSelectedRow(), 0));
+        if(jtable_Animais.getSelectedRow() != -1){
+            animal.setId((int)jtable_Animais.getValueAt(jtable_Animais.getSelectedRow(), 0));
             Variaveis.UPDATE = true;
-            System.out.println("Customer's id from table: "+cliente.getId());
+            System.out.println("Animal's id from table: "+animal.getId());
         }
-    }//GEN-LAST:event_jt_ClientesMouseClicked
+    }//GEN-LAST:event_jtable_AnimaisMouseClicked
 
     private void jb_Ani_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_AtualizarActionPerformed
         // TODO add your handling code here:
         if (Variaveis.UPDATE == true) {
-            Variaveis.ID = cliente.getId();
-            Cadastro_Cliente cc = new Cadastro_Cliente(null, true);
-            cc.setVisible(true);
+            Variaveis.ID = animal.getId();
+            Cadastro_Animal ca = new Cadastro_Animal(null, true);
+            ca.setVisible(true);
         } else{
             JOptionPane.showMessageDialog(this, "Você precisa clicar em um registro para atualizar!");
         }
@@ -261,10 +264,9 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
 
     private void jb_Ani_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_ExcluirActionPerformed
         // TODO add your handling code here:
-        ClienteDAO clienteDAO = new ClienteDAO();
         if(Variaveis.UPDATE == true){
             //Delete
-            if(clienteDAO.Deletar_Cliente(cliente)){
+            if(AnimalDAO.Deletar_Animal(animal)){
                 try {
                     listarjTable();
                 } catch (ClassNotFoundException ex) {
@@ -291,17 +293,16 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
 
     //Methods
     public void listarjTable() throws ClassNotFoundException{
-        DefaultTableModel model = (DefaultTableModel) jt_Clientes.getModel();
+        DefaultTableModel model = (DefaultTableModel) jtable_Animais.getModel();
         model.setNumRows(0);
-        ClienteDAO clienteDAO = new ClienteDAO();
+        AnimalDAO animalDAO = new AnimalDAO();
         
-        for(Cliente c: clienteDAO.Listar_Cliente()){
+        for(Animal a: animalDAO.Listar_Animais()){
             model.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getEndereco(),
-                c.getTelefone(),
-                c.getCelular()
+                a.getId(),
+                a.getNome(),
+                a.getEspecie(),
+                a.getRaca()
             });
         }
     }
@@ -318,6 +319,6 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
     private javax.swing.JButton jb_Ani_Excluir;
     private javax.swing.JButton jb_Ani_Vizualizar;
     private javax.swing.JTextField jt_Cli_Buscar;
-    private javax.swing.JTable jt_Clientes;
+    private javax.swing.JTable jtable_Animais;
     // End of variables declaration//GEN-END:variables
 }
