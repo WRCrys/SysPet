@@ -283,9 +283,9 @@ public class Tela_Animal extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Variaveis.SEE = true;
         if (Variaveis.UPDATE == true) {
-            Variaveis.ID = cliente.getId();
-            Cadastro_Cliente cc = new Cadastro_Cliente(null, true);
-            cc.setVisible(true);
+            Variaveis.ID = animal.getId();
+            Cadastro_Animal ca = new Cadastro_Animal(null, true);
+            ca.setVisible(true);
         } else{
             JOptionPane.showMessageDialog(this, "Você precisa clicar em um registro para vizualizar!");
         }

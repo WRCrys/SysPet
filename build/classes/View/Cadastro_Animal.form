@@ -314,6 +314,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrb_Ani_MachoMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_Ani_MachoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="jrb_Ani_Femia">
@@ -328,6 +329,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrb_Ani_FemiaMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_Ani_FemiaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -384,6 +386,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrb_Ani_AtivoMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_Ani_AtivoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="jrb_Ani_Inativo">
@@ -398,6 +401,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrb_Ani_InativoMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_Ani_InativoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

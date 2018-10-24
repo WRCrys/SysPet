@@ -10,6 +10,8 @@ import Model.Animal;
 import Model.Cliente;
 import Variables.Variaveis;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -31,14 +33,28 @@ public class Cadastro_Animal extends javax.swing.JDialog {
 
         Date dataSistema = new Date();
         jd_Anii_Data_Cad.setDate(dataSistema);
-        
+
         Label_Title.setText(Variaveis.TITULO_ANIMAL);
-        
-        if (Variaveis.UPDATE == true) {
+
+        if (Variaveis.UPDATE == true && Variaveis.SEE == false) {
             //fetch data from database
             FetchDataAnimal();
+        } else if (Variaveis.UPDATE == true && Variaveis.SEE == true) {
+            jt_Ani_Nome.setEditable(false);
+            jcb_Ani_Especie.setEnabled(false);
+            jt_Ani_Raca.setEditable(false);
+            jcb_Ani_Prop_Cod.setEditable(false);
+            jcb_Ani_Prop_Cod.setEnabled(false);
+            jd_Ani_Data_Nasc.setEnabled(false);
+            jrb_Ani_Macho.setEnabled(false);
+            jrb_Ani_Femia.setEnabled(false);
+            jrb_Ani_Ativo.setEnabled(false);
+            jrb_Ani_Inativo.setEnabled(false);
+            jb_Ani_Salvar.setVisible(false);
+            jb_Ani_Limpar.setVisible(false);
+            FetchDataAnimal();
         }
-        
+
         List_Id_Combobox();
     }
 
@@ -161,6 +177,11 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                 jrb_Ani_MachoMouseClicked(evt);
             }
         });
+        jrb_Ani_Macho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_Ani_MachoActionPerformed(evt);
+            }
+        });
 
         bg_Cli_Sexo.add(jrb_Ani_Femia);
         jrb_Ani_Femia.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
@@ -168,6 +189,11 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         jrb_Ani_Femia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jrb_Ani_FemiaMouseClicked(evt);
+            }
+        });
+        jrb_Ani_Femia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_Ani_FemiaActionPerformed(evt);
             }
         });
 
@@ -203,6 +229,11 @@ public class Cadastro_Animal extends javax.swing.JDialog {
                 jrb_Ani_AtivoMouseClicked(evt);
             }
         });
+        jrb_Ani_Ativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_Ani_AtivoActionPerformed(evt);
+            }
+        });
 
         bg_Cli_Status.add(jrb_Ani_Inativo);
         jrb_Ani_Inativo.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 0, 11)); // NOI18N
@@ -210,6 +241,11 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         jrb_Ani_Inativo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jrb_Ani_InativoMouseClicked(evt);
+            }
+        });
+        jrb_Ani_Inativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_Ani_InativoActionPerformed(evt);
             }
         });
 
@@ -583,6 +619,7 @@ public class Cadastro_Animal extends javax.swing.JDialog {
     private void jb_Ani_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Ani_CancelarActionPerformed
         // TODO add your handling code here:
         Variaveis.UPDATE = false;
+        Variaveis.SEE = false;
         dispose();
     }//GEN-LAST:event_jb_Ani_CancelarActionPerformed
 
@@ -623,46 +660,64 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         animal.setCadastro(jd_Anii_Data_Cad.getDate());
         animal.setSexo(sexo);
         animal.setStatus(status);
-        System.out.println("PK: "+cliente.getId());
+        System.out.println("PK: " + cliente.getId());
         if (Variaveis.UPDATE != true && Variaveis.SEE == false) {
             //Insert
-            if(validation()){
-                if(AnimalDAO.Cadastrar_Animal(animal)){
+            if (validation()) {
+                if (AnimalDAO.Cadastrar_Animal(animal)) {
                     JOptionPane.showMessageDialog(this, "Registro salvo com suceso!");
+                    //refresh the table
+                    Tela_Animal ta = new Tela_Animal();
+                    try {
+                        ta.listarjTable();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Cadastro_Animal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro ao salvar o registro!");
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Campos vazios!");
             }
-            
-        } else{
+
+        } else {
             //Update
-                        
+            if (AnimalDAO.Atualizar_Animal(animal)) {
+                JOptionPane.showMessageDialog(this, "Registro salvo com suceso!");
+                //refresh the table
+                    Tela_Animal ta = new Tela_Animal();
+                    try {
+                        ta.listarjTable();
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Cadastro_Animal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao salvar o registro!");
+            }
+
         }
-        
-        
+
 
     }//GEN-LAST:event_jb_Ani_SalvarActionPerformed
 
     private void jrb_Ani_MachoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Ani_MachoMouseClicked
         // TODO add your handling code here:
-        sexo = "Macho";
+        
     }//GEN-LAST:event_jrb_Ani_MachoMouseClicked
 
     private void jrb_Ani_FemiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Ani_FemiaMouseClicked
         // TODO add your handling code here:
-        sexo = "Femia";
+        
     }//GEN-LAST:event_jrb_Ani_FemiaMouseClicked
 
     private void jrb_Ani_AtivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Ani_AtivoMouseClicked
         // TODO add your handling code here:
-        status = "Ativo";
+        
     }//GEN-LAST:event_jrb_Ani_AtivoMouseClicked
 
     private void jrb_Ani_InativoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrb_Ani_InativoMouseClicked
         // TODO add your handling code here:
-        status = "Inativo";
+        
     }//GEN-LAST:event_jrb_Ani_InativoMouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -677,13 +732,33 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         Cliente cliente = new Cliente();
         ClienteDAO clienteDAO = new ClienteDAO();
         cliente.setId(Integer.parseInt(jcb_Ani_Prop_Cod.getSelectedItem().toString()));
-        for(Cliente c: clienteDAO.Buscar_Cliente(cliente.getId())){
+        for (Cliente c : clienteDAO.Buscar_Cliente(cliente.getId())) {
             jt_Ani_Prop_Nome.setText(c.getNome());
             jt_Ani_Prop_End.setText(c.getEndereco());
             jft_Ani_Prop_Telefone.setText(c.getTelefone());
             jft_Ani_Prop_Celular.setText(c.getCelular());
         }
     }//GEN-LAST:event_jcb_Ani_Prop_CodActionPerformed
+
+    private void jrb_Ani_MachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_Ani_MachoActionPerformed
+        // TODO add your handling code here:
+        sexo = "Macho";
+    }//GEN-LAST:event_jrb_Ani_MachoActionPerformed
+
+    private void jrb_Ani_FemiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_Ani_FemiaActionPerformed
+        // TODO add your handling code here:
+        sexo = "Femia";
+    }//GEN-LAST:event_jrb_Ani_FemiaActionPerformed
+
+    private void jrb_Ani_AtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_Ani_AtivoActionPerformed
+        // TODO add your handling code here:
+        status = "Ativo";
+    }//GEN-LAST:event_jrb_Ani_AtivoActionPerformed
+
+    private void jrb_Ani_InativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_Ani_InativoActionPerformed
+        // TODO add your handling code here:
+        status = "Inativo";
+    }//GEN-LAST:event_jrb_Ani_InativoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -745,11 +820,11 @@ public class Cadastro_Animal extends javax.swing.JDialog {
         jcb_Ani_Prop_Cod.setSelectedIndex(0);
 
     }
-    
-    private void List_Id_Combobox(){
+
+    private void List_Id_Combobox() {
         ClienteDAO clienteDAO = new ClienteDAO();
-        
-        for(Cliente c: clienteDAO.Id_Cliente()){
+
+        for (Cliente c : clienteDAO.Id_Cliente()) {
             jcb_Ani_Prop_Cod.addItem(c.getId().toString());
         }
     }
@@ -782,9 +857,36 @@ public class Cadastro_Animal extends javax.swing.JDialog {
 
         }
     }
-    
-    public void FetchDataAnimal(){}
-    
+
+    public void FetchDataAnimal() {
+        AnimalDAO animalDAO = new AnimalDAO();
+        Cliente cliente = new Cliente();
+        for (Animal a : animalDAO.Buscar_Animal_Id(Variaveis.ID)) {
+            animal.setId(a.getId());
+            jt_Ani_Nome.setText(a.getNome());
+            jcb_Ani_Especie.setSelectedItem(a.getEspecie());
+            jt_Ani_Raca.setText(a.getRaca());
+            jcb_Ani_Prop_Cod.setSelectedItem(a.getProprietario().getId());
+            jd_Ani_Data_Nasc.setDate(a.getNascimento());
+            if (a.getSexo().equals("Macho")) {
+                jrb_Ani_Macho.setSelected(true);
+                sexo = "Macho";
+            } else {
+                jrb_Ani_Femia.setSelected(true);
+                sexo = "Femia";
+            }
+            if (a.getStatus().equals("Ativo")) {
+                jrb_Ani_Ativo.setSelected(true);
+                status = "Ativo";
+            } else {
+                jrb_Ani_Inativo.setSelected(true);
+                status = "Inativo";
+            }
+            jd_Anii_Data_Cad.setDate(a.getCadastro());
+        }
+        //jcb_Ani_Especie.getModel().setSelectedItem(animal.getEspecie());
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_Title;

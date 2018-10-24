@@ -52,8 +52,8 @@ public class Cadastro_Cliente extends javax.swing.JDialog {
             jrb_Cli_Fem.setEnabled(false);
             jrb_Cli_ativo.setEnabled(false);
             jrb_Cli_inativo.setEnabled(false);
-            jb_Cli_Salvar.setEnabled(false);
-            jb_Cli_Limpar.setEnabled(false);
+            jb_Cli_Salvar.setVisible(false);
+            jb_Cli_Limpar.setVisible(false);
             FetchDataCustomer();
         }
     }

@@ -128,7 +128,7 @@ public class AnimalDAO {
         }
     }
     
-    public List<Animal> Buscar_Animal_Id(Animal a) {
+    public List<Animal> Buscar_Animal_Id(Integer id) {
         List<Animal> animais = new ArrayList();
 
         sql = "Select * from " +Variaveis.TB_ANIMAL+" where id = ?";
@@ -136,7 +136,7 @@ public class AnimalDAO {
         try {
             conmysql = conexaomysql.conectabdmysql();
             psmt = conmysql.prepareStatement(sql);
-            psmt.setInt(1, a.getId());
+            psmt.setInt(1, id);
             rs = psmt.executeQuery();
 
             while (rs.next()) {
